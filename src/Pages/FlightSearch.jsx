@@ -2,7 +2,7 @@ import Introsection from "../Components/Introsection";
 import Navbar from "../Components/Navbar";
 import FallintotravelCard from "../Components/FallintotravelCard";
 import telegram from "../svg/telegram.svg";
-import leftrightarrow from "../svg/leftrightarrow.svg";
+import leftrightarrow from "../svg/Leftrightarrow.svg";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
