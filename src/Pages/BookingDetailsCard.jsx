@@ -1,5 +1,5 @@
 import airplane from "../svg/airplane.svg";
-import johncircle from "../images/johncircle.png";
+import johncircle from "../images/JohnCircle.png";
 import calendar from "../svg/calendar.svg";
 import qrCode from "../svg/qrCode.svg";
 import roundVector from "../svg/roundVector.svg";
