@@ -1,5 +1,5 @@
 import logo from "../svg/logo.svg";
-import footerlogo from "../svg/footerlogo.svg"
+import footerlogo from "../svg/footerLogo.svg"
 import whiteLogo from "../svg/whiteLogo.svg";
 import plane from "../svg/plane.svg";
 import bed from "../svg/bed.svg";
