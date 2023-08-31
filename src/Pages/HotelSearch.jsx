@@ -7,7 +7,7 @@ import { NavLink, Link } from "react-router-dom";
 import React, { useRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import footerlogo from "../svg/footerlogo.svg";
+import footerlogo from "../svg/footerLogo.svg";
 import logo from "../svg/logo.svg";
 import whiteLogo from "../svg/whiteLogo.svg";
 import plane from "../svg/plane.svg";
@@ -18,7 +18,7 @@ import { BsFillHeartFill } from "react-icons/bs";
 import { AiOutlineBars } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import { RiShoppingCart2Line } from "react-icons/ri";
-function HotelSearch({ basketHotelBuy, basketTicketBuy,dispatch }) {
+function HotelSearch({ basketHotelBuy, basketTicketBuy, dispatch }) {
   const [trip, setTrip] = useState([]);
   const [location, setLocation] = useState([]);
   const [recent, setRecent] = useState([]);
@@ -42,17 +42,17 @@ function HotelSearch({ basketHotelBuy, basketTicketBuy,dispatch }) {
       });
   }, []);
   const handleClick = () => [setCount(count + 4)];
-  const handleClickLess=()=>[setCount(4)]
+  const handleClickLess = () => [setCount(4)]
   const [say, setSay] = useState(3);
   const increaseCount = () => {
     setSay(say + 3);
   };
-  const decreaseCount=()=>{
+  const decreaseCount = () => {
     setSay(3)
   }
 
   const seeMore = () => [setLocationCount(locationCount + 1)];
-  const seeLess=()=>[setLocationCount(1)]
+  const seeLess = () => [setLocationCount(1)]
   const [enterdestination, setEnterDestination] = useState("");
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
@@ -123,196 +123,196 @@ function HotelSearch({ basketHotelBuy, basketTicketBuy,dispatch }) {
 
   return (
     <>
-    <div className="container__full">
-      <header
-        style={{
-          backgroundColor: navColor,
-          transition: "all .5s",
-        }}
-        className="flight-search-navbar"
-      >
-        <nav className="nav_links">
-          <ul>
-            <li>
-              <NavLink
-               style={{
+      <div className="container__full">
+        <header
+          style={{
+            backgroundColor: navColor,
+            transition: "all .5s",
+          }}
+          className="flight-search-navbar"
+        >
+          <nav className="nav_links">
+            <ul>
+              <li>
+                <NavLink
+                  style={{
+                    transition: "all .5s",
+                    color: buttonColor,
+                  }}
+                  className="nav_link" to="/flight-search">
+                  {" "}
+                  {!logos ? (
+                    <img src={whitePlane} alt="" />
+                  ) : (
+                    <img src={plane} alt="" />
+                  )}
+                  Find Flight
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  style={{
+                    transition: "all .5s",
+                    color: buttonColor,
+                  }}
+                  className="nav_link" to="/hotel-search">
+                  {!logos ? (
+                    <img src={whiteBed} alt="" />
+                  ) : (
+                    <img src={bed} alt="" />
+                  )}
+                  Find Stays
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+
+          <div className="logo">
+            <AiOutlineBars
+              style={{
                 transition: "all .5s",
                 color: buttonColor,
               }}
-               className="nav_link" to="/flight-search">
-                {" "}
-                {!logos ? (
-                <img src={whitePlane} alt="" />
-              ) : (
-                <img src={plane} alt="" />
-              )}
-                Find Flight
-              </NavLink>
-            </li>
-            <li>
+              className="menu_bar" onClick={openOverlayMenu} />
+            {!logos ? <img src={whiteLogo} alt="" /> : <img src={logo} alt="" />}
+
+          </div>
+
+
+          <div className="overlay_menu" ref={overlayMenuRef}>
+            <RxCross2 onClick={closeOverlayMenu} className="menu_close" />
+            <img src={footerlogo} alt="" />
+            <ul>
+              <li>
+                <Link to="/flight-search">Find Flight</Link>
+              </li>
+              <li>
+                <Link to="/hotel-search">Find Stays</Link>
+              </li>
+              <li>
+                <Link to="/favourites">Favourites</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="john__btns"
+
+          >
+
+            <h3 className="favourites_link">
+              <BsFillHeartFill
+                className="nav_heart"
+                style={{
+                  transition: "all .5s",
+                  color: buttonColor,
+                }}
+              />
               <NavLink
                 style={{
                   transition: "all .5s",
                   color: buttonColor,
                 }}
-               className="nav_link" to="/hotel-search">
-              {!logos ? (
-                <img src={whiteBed} alt="" />
-              ) : (
-                <img src={bed} alt="" />
-              )}
-                Find Stays
+                className="nav_link" to="/favourites">
+                Favourites
               </NavLink>
-            </li>
-          </ul>
-        </nav>
-
-        <div className="logo">
-        <AiOutlineBars
-           style={{
-            transition: "all .5s",
-            color: buttonColor,
-          }}
-            className="menu_bar" onClick={openOverlayMenu} />
-        {!logos ? <img src={whiteLogo} alt="" /> : <img src={logo} alt="" />}
-      
-        </div>
-        
-
-        <div className="overlay_menu" ref={overlayMenuRef}>
-        <RxCross2 onClick={closeOverlayMenu} className="menu_close" />
-        <img src={footerlogo} alt="" />
-          <ul>
-            <li>
-              <Link to="/flight-search">Find Flight</Link>
-            </li>
-            <li>
-              <Link to="/hotel-search">Find Stays</Link>
-            </li>
-            <li>
-              <Link to="/favourites">Favourites</Link>
-            </li>
-          </ul>
-        </div>
-
-        <div className="john__btns"
-         
-         >
-        
-          <h3 className="favourites_link">
-            <BsFillHeartFill 
-            className="nav_heart"
-             style={{
-              transition: "all .5s",
-              color: buttonColor,
-            }}
-            />
-            <NavLink
-             style={{
-              transition: "all .5s",
-              color: buttonColor,
-            }}
-               className="nav_link" to="/favourites">
-              Favourites
-            </NavLink>
-          </h3>
-          <h3 style={
+            </h3>
+            <h3 style={
               {
-                color:buttonColor
+                color: buttonColor
               }
             }>|</h3>
-          <NavLink className="account_icon_nav" to="/account-flow">
-            <div className="shop_count">
-              <RiShoppingCart2Line style={
+            <NavLink className="account_icon_nav" to="/account-flow">
+              <div className="shop_count">
+                <RiShoppingCart2Line style={
+                  {
+                    color: buttonColor
+                  }
+                } className="shop_icon" />
+                <span>{basketHotelBuy.length + basketTicketBuy.length}</span>
+              </div>
+            </NavLink>
+            <img className="john__image" src={johndayi} alt="" />
+            <h3 style={
               {
-                color:buttonColor
-              }
-            } className="shop_icon" />
-              <span>{basketHotelBuy.length + basketTicketBuy.length}</span>
-            </div>
-          </NavLink>
-          <img className="john__image" src={johndayi} alt="" />
-          <h3 style={
-              {
-                color:buttonColor
+                color: buttonColor
               }
             }>John D.</h3>
-        </div>
-      </header>
-
-      <div className="introsection-flight-search">
-        <Introsection />
-      </div>
-      <div className="container_main">
-        <div className="whereFlying">
-          <h3>Where are you flying? </h3>
-          <div className="flying-inputs">
-            <form action="">
-              <fieldset>
-                <legend>Enter Destination</legend>
-                <img src={bed} alt="" />
-                <input
-                  value={enterdestination}
-                  onChange={(e) => setEnterDestination(e.target.value)}
-                  type="text"
-                  placeholder="Istanbul, Turkey"
-                />
-              </fieldset>
-              <fieldset>
-                <legend>Check In</legend>
-                <input
-                  value={checkIn}
-                  onChange={(e) => setCheckIn(e.target.value)}
-                  type="date"
-                  placeholder="Fri 12/2"
-                />
-              </fieldset>
-
-              <fieldset>
-                <legend>Check Out</legend>
-                <input
-                  value={checkOut}
-                  onChange={(e) => setCheckOut(e.target.value)}
-                  type="date"
-                  placeholder="Sun 12/4"
-                />
-              </fieldset>
-
-              <fieldset>
-                <legend>Rooms & Guests</legend>
-                
-                <select
-                   value={rooms}
-                   onChange={(e)=>setRooms(e.target.value)}
-                >
-                  <option value="">Rooms & Guests</option>
-                  <option value="1 Room - 1 Guest">1 Room - 1 Guest</option>
-                  <option value="1 Room - 2 Guests">1 Room - 2 Guests</option>
-                  <option value="1 Room - 3 Guests">1 Room - 3 Guests</option>
-                  <option value="1 Room - 4 Guests">1 Room - 4 Guests</option>
-                  <option value="1 Room - 5 Guests">1 Room - 5 Guests</option>
-                  <option value="2 Rooms - 6 Guests">2 Rooms - 6 Guests</option>
-                  <option value="2 Rooms - 7 Guests">2 Rooms - 7 Guests</option>
-                  <option value="2 Rooms - 8 Guests">2 Rooms - 8 Guests</option>
-                  <option value="2 Rooms - 9 Guests">2 Rooms - 9 Guests</option>
-                  <option value="2 Rooms - 10 Guests">
-                    2 Rooms - 10 Guests
-                  </option>
-                </select>
-               
-              </fieldset>
-            </form>
           </div>
-          <div className="flying-btns">
-            <button>
-              <img src={telegram} alt="" />
-              <Link onClick={commonFunc2}>Show Places</Link>
-            </button>
+        </header>
+
+        <div className="introsection-flight-search">
+          <Introsection />
+        </div>
+        <div className="container_main">
+          <div className="whereFlying">
+            <h3>Where are you flying? </h3>
+            <div className="flying-inputs">
+              <form action="">
+                <fieldset>
+                  <legend>Enter Destination</legend>
+                  <img src={bed} alt="" />
+                  <input
+                    value={enterdestination}
+                    onChange={(e) => setEnterDestination(e.target.value)}
+                    type="text"
+                    placeholder="Istanbul, Turkey"
+                  />
+                </fieldset>
+                <fieldset>
+                  <legend>Check In</legend>
+                  <input
+                    value={checkIn}
+                    onChange={(e) => setCheckIn(e.target.value)}
+                    type="date"
+                    placeholder="Fri 12/2"
+                  />
+                </fieldset>
+
+                <fieldset>
+                  <legend>Check Out</legend>
+                  <input
+                    value={checkOut}
+                    onChange={(e) => setCheckOut(e.target.value)}
+                    type="date"
+                    placeholder="Sun 12/4"
+                  />
+                </fieldset>
+
+                <fieldset>
+                  <legend>Rooms & Guests</legend>
+
+                  <select
+                    value={rooms}
+                    onChange={(e) => setRooms(e.target.value)}
+                  >
+                    <option value="">Rooms & Guests</option>
+                    <option value="1 Room - 1 Guest">1 Room - 1 Guest</option>
+                    <option value="1 Room - 2 Guests">1 Room - 2 Guests</option>
+                    <option value="1 Room - 3 Guests">1 Room - 3 Guests</option>
+                    <option value="1 Room - 4 Guests">1 Room - 4 Guests</option>
+                    <option value="1 Room - 5 Guests">1 Room - 5 Guests</option>
+                    <option value="2 Rooms - 6 Guests">2 Rooms - 6 Guests</option>
+                    <option value="2 Rooms - 7 Guests">2 Rooms - 7 Guests</option>
+                    <option value="2 Rooms - 8 Guests">2 Rooms - 8 Guests</option>
+                    <option value="2 Rooms - 9 Guests">2 Rooms - 9 Guests</option>
+                    <option value="2 Rooms - 10 Guests">
+                      2 Rooms - 10 Guests
+                    </option>
+                  </select>
+
+                </fieldset>
+              </form>
+            </div>
+            <div className="flying-btns">
+              <button>
+                <img src={telegram} alt="" />
+                <Link onClick={commonFunc2}>Show Places</Link>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-       <div className="container_main">
-       <div className="text__button__content ">
+        <div className="container_main">
+          <div className="text__button__content ">
             <div>
               <h1>Plan your perfect trip</h1>
               <p>
@@ -321,18 +321,18 @@ function HotelSearch({ basketHotelBuy, basketTicketBuy,dispatch }) {
             </div>
             {/* <button className="btn btn2" onClick={increaseCount}>See More</button> */}
             {
-              say <recent.length?
-            <div onClick={increaseCount} className="btn btn2 landingbtn">
-              <h4>See More</h4>
-            </div>
-            :
-            <div onClick={decreaseCount} className="btn btn2 landingbtn">
-              <h4>See Less</h4>
-            </div>
+              say < recent.length ?
+                <div onClick={increaseCount} className="btn btn2 landingbtn">
+                  <h4>See More</h4>
+                </div>
+                :
+                <div onClick={decreaseCount} className="btn btn2 landingbtn">
+                  <h4>See Less</h4>
+                </div>
             }
-            
+
           </div>
-       <div className="perfect_trip_cards">
+          <div className="perfect_trip_cards">
             {recent.slice(0, say).map((t, b) => {
               return (
                 <PerfectTripCard
@@ -343,101 +343,101 @@ function HotelSearch({ basketHotelBuy, basketTicketBuy,dispatch }) {
               );
             })}
           </div>
-       </div>
-    
-    
-      <div className="container_main">
-        <div className="text__button__content ">
-          <div>
-            <h1>Fall into travel</h1>
-            <p>
-              Going somewhere to celebrate this season? Whether you’re going
-              home or somewhere to roam, we’ve got the travel tools to get you
-              to your destination.
-            </p>
+        </div>
+
+
+        <div className="container_main">
+          <div className="text__button__content ">
+            <div>
+              <h1>Fall into travel</h1>
+              <p>
+                Going somewhere to celebrate this season? Whether you’re going
+                home or somewhere to roam, we’ve got the travel tools to get you
+                to your destination.
+              </p>
+            </div>
+            {
+              count < trip.length ?
+                <div onClick={handleClick} className="btn btn2">
+                  <h4>See More</h4>
+                </div> :
+                <div onClick={handleClickLess} className="btn btn2">
+                  <h4>See Less</h4>
+                </div>
+            }
           </div>
-          {
-            count<trip.length ?
-<div onClick={handleClick} className="btn btn2">
-      <h4>See More</h4>
-    </div> :
-    <div onClick={handleClickLess} className="btn btn2">
-    <h4>See Less</h4>
-  </div>
-           }
         </div>
-      </div>
-      <div className="container_main">
-        <div className="fall__into__travel__cards">
-          {trip.slice(0, count).map((t) => (
-            <FallintotravelCard
-              key={t.id}
-              cardImg={t.image}
-              cardh2={t.travelName}
-              cardh4={t.about}
-              cardPrice={t.price}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="container_main">
-        <div className="text__button__content ">
-          <div>
-            <h1>Fall into travel</h1>
-            <p>
-              Going somewhere to celebrate this season? Whether you’re going
-              home or somewhere to roam, we’ve got the travel tools to get you
-              to your destination.
-            </p>
+        <div className="container_main">
+          <div className="fall__into__travel__cards">
+            {trip.slice(0, count).map((t) => (
+              <FallintotravelCard
+                key={t.id}
+                cardImg={t.image}
+                cardh2={t.travelName}
+                cardh4={t.about}
+                cardPrice={t.price}
+              />
+            ))}
           </div>
-          {
-            locationCount<location.length?
-            <div onClick={seeMore} className="btn btn2">
-            <h4>See More</h4>
-          </div>:
-           <div onClick={seeLess} className="btn btn2">
-           <h4>See Less</h4>
-         </div>
-          }
-          
         </div>
-      </div>
-      <div className="container_main">
-        {location.slice(0, locationCount).map((t, b) => (
-          <div key={b} className="sri__Lanka">
-            <div className="about__Sri__Lanka">
-              <div className="sri__lanka__title">
-                <h1>Backpacking {t.name}</h1>
-                <div className="sri__lanka__price">
-                  <h3>
-                    From <span>${t.price}</span>
-                  </h3>
+        <div className="container_main">
+          <div className="text__button__content ">
+            <div>
+              <h1>Fall into travel</h1>
+              <p>
+                Going somewhere to celebrate this season? Whether you’re going
+                home or somewhere to roam, we’ve got the travel tools to get you
+                to your destination.
+              </p>
+            </div>
+            {
+              locationCount < location.length ?
+                <div onClick={seeMore} className="btn btn2">
+                  <h4>See More</h4>
+                </div> :
+                <div onClick={seeLess} className="btn btn2">
+                  <h4>See Less</h4>
+                </div>
+            }
+
+          </div>
+        </div>
+        <div className="container_main">
+          {location.slice(0, locationCount).map((t, b) => (
+            <div key={b} className="sri__Lanka">
+              <div className="about__Sri__Lanka">
+                <div className="sri__lanka__title">
+                  <h1>Backpacking {t.name}</h1>
+                  <div className="sri__lanka__price">
+                    <h3>
+                      From <span>${t.price}</span>
+                    </h3>
+                  </div>
+                </div>
+                <p>{t.paragraf}</p>
+                <div onClick={seeMore} className="btn-div">
+                  <Link to="/account-flow">Book Flight</Link>
                 </div>
               </div>
-              <p>{t.paragraf}</p>
-              <div onClick={seeMore} className="btn-div">
-                <Link to="/account-flow">Book Flight</Link>
-              </div>
-            </div>
-            <div className="sri__lanka__imgs">
-              <div>
-                <img src={t.image1} alt="" />
-              </div>
-              <div>
-                <img src={t.image2} alt="" />
-              </div>
-              <div>
-                <img src={t.image3} alt="" />
-              </div>
+              <div className="sri__lanka__imgs">
+                <div>
+                  <img src={t.image1} alt="" />
+                </div>
+                <div>
+                  <img src={t.image2} alt="" />
+                </div>
+                <div>
+                  <img src={t.image3} alt="" />
+                </div>
 
-              <div>
-                <img src={t.image4} alt="" />
+                <div>
+                  <img src={t.image4} alt="" />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="sri__lanka__blank"></div>
+          ))}
+        </div>
+        <div className="sri__lanka__blank"></div>
       </div>
     </>
   );
