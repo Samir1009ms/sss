@@ -1,5 +1,5 @@
 import Star from "../images/Star.png";
-import flightDetail1 from "../images/flightDetail1.png";
+import flightDetail1 from "../images/fLightDetail1.png";
 import flightDetail2 from "../images/flightDetail2.png";
 import flightDetail3 from "../images/flightDetail3.png";
 import flightDetail4 from "../images/flightDetail4.png";
@@ -68,7 +68,7 @@ export default function FlightDetails() {
           <div className="hotel_book">
             <h2>${data.price}</h2>
             <div>
-             
+
 
               <button className="hotel_button">
                 <Link to={`/booking-details/${id}`}>Book now</Link>
@@ -84,7 +84,7 @@ export default function FlightDetails() {
         <section className="flight_economy_feat">
           <div>
             <h3>Basic Economy Features</h3>
-        
+
           </div>
 
           <div>
@@ -165,7 +165,7 @@ export default function FlightDetails() {
             </div>
           </div>
         </section>
-        
+
       </div>
     </section>
   );
