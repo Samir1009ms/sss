@@ -63,7 +63,7 @@ function HotelListingone({ basketHotel, dispatch, basketHotelBuy }) {
   });
 
   useEffect(() => {
-    fetch("http://localhost:2605/hotels")
+    fetch("https://jsons-lemon.vercel.app/hotels")
       .then((response) => response.json())
       .then((data) => {
         setData(data);
@@ -469,9 +469,8 @@ function HotelListingone({ basketHotel, dispatch, basketHotelBuy }) {
             <div className="hotel_listing_places">
               <div>
                 <div
-                  className={`flight_listing_places_box ${
-                    activeIndex === 0 ? "active" : ""
-                  }`}
+                  className={`flight_listing_places_box ${activeIndex === 0 ? "active" : ""
+                    }`}
                   onClick={() => handleClick(0)}
                 >
                   <button onClick={() => handleTypeChange("hotel")}>
@@ -483,9 +482,8 @@ function HotelListingone({ basketHotel, dispatch, basketHotelBuy }) {
                 <img src={Line1} alt="" />
 
                 <div
-                  className={`flight_listing_places_box ${
-                    activeIndex === 1 ? "active" : ""
-                  }`}
+                  className={`flight_listing_places_box ${activeIndex === 1 ? "active" : ""
+                    }`}
                   onClick={() => handleClick(1)}
                 >
                   <button onClick={() => handleTypeChange("resort")}>
@@ -497,9 +495,8 @@ function HotelListingone({ basketHotel, dispatch, basketHotelBuy }) {
                 <img src={Line1} alt="" />
 
                 <div
-                  className={`flight_listing_places_box ${
-                    activeIndex === 2 ? "active" : ""
-                  }`}
+                  className={`flight_listing_places_box ${activeIndex === 2 ? "active" : ""
+                    }`}
                   onClick={() => handleClick(2)}
                 >
                   <button onClick={() => handleTypeChange("motel")}>

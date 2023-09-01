@@ -70,7 +70,7 @@ function BookingDetails() {
       // setFormState(initialForm);
       setErrorMessage("")
       setStatefor(!statefor);
-      
+
       //  nav(`/hotel-detailsCard/${id}`);
     }
   };
@@ -103,7 +103,7 @@ function BookingDetails() {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:2605/hotels/${id}`)
+    fetch(`https://jsons-lemon.vercel.app/hotels/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setData(data);
@@ -347,7 +347,7 @@ function BookingDetails() {
                     </h4>
 
                     <button className="login_btn" onClick={handleOkButtonClick}>
-                      <Link  className="hotel_modal_a"
+                      <Link className="hotel_modal_a"
                         to={statefor ? `/hotel-detailsCard/${id}` : ""}
                         state={{
                           place: loc.state.room,

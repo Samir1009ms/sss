@@ -6,13 +6,13 @@ function Review() {
   //review
   const [operation, setOperation] = useState(false);
   const [data, setData] = useState([]);
-  
+
   useEffect(() => {
-    fetch("http://localhost:1313/reviews")
+    fetch("https://data-json-sepia.vercel.app/reviews")
       .then((a) => a.json())
       .then((a) => setData(a));
   }, []);
-  
+
   const [product, setProduct] = useState({
     name: "John Devid",
     comment: "",
@@ -32,7 +32,7 @@ function Review() {
         "https://smilequestdental.com/wp-content/uploads/2016/11/test24-4.jpg",
     });
     e.preventDefault();
-    fetch("http://localhost:1313/reviews", {
+    fetch("https://data-json-sepia.vercel.app/reviews", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -44,14 +44,14 @@ function Review() {
     });
   };
   // const deleteItem = (id) => {
-  //   fetch(`http://localhost:1313/reviews/${id}`, {
+  //   fetch(`https://data-json-sepia.vercel.app/reviews/${id}`, {
   //     method: "DELETE",
   //   }).then(() => {
   //     setData([...data.filter((t) => t.id !== id)]);
   //   });
   // };
- 
-  
+
+
   const [activePage, setActivePage] = useState(1);
   const productPerPage = 4;
   const totalPageCount = Math.ceil(data.length / productPerPage);

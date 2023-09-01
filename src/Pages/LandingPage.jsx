@@ -35,7 +35,7 @@ function LandingPage({ dispatch }) {
 
   const [say, setSay] = useState(3);
   useEffect(() => {
-    fetch("http://localhost:1313/trips")
+    fetch("https://data-json-sepia.vercel.app/trips")
       .then((a) => a.json())
       .then((a) => {
         setTrip(a);

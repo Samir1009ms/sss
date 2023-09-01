@@ -12,7 +12,7 @@ function BookingDetailsCard() {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:2605/tickets/${id}`)
+    fetch(`https://jsons-lemon.vercel.app/tickets/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setData(data);

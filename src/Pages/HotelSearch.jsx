@@ -25,17 +25,17 @@ function HotelSearch({ basketHotelBuy, basketTicketBuy, dispatch }) {
   const [locationCount, setLocationCount] = useState(1);
   const [count, setCount] = useState(4);
   useEffect(() => {
-    fetch("http://localhost:1313/cards")
+    fetch("https://data-json-sepia.vercel.app/cards")
       .then((a) => a.json())
       .then((a) => {
         setTrip(a);
       });
-    fetch("http://localhost:1313/trips")
+    fetch("https://data-json-sepia.vercel.app/trips")
       .then((a) => a.json())
       .then((a) => {
         setRecent(a);
       });
-    fetch("http://localhost:1313/location")
+    fetch("https://data-json-sepia.vercel.app/location")
       .then((b) => b.json())
       .then((b) => {
         setLocation(b);

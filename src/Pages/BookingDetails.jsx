@@ -20,59 +20,59 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from "react-router-dom"
 function BookingDetails() {
   const initialForm = {
-    cardnumber:"",
-    expdate:"",
-    cvc:"",
-    nameoncard:"",
-    country:""  ,
-    phonenumber:""
+    cardnumber: "",
+    expdate: "",
+    cvc: "",
+    nameoncard: "",
+    country: "",
+    phonenumber: ""
   };
   const [formState, setFormState] = useState(initialForm);
-  const { cardnumber,expdate,cvc,nameoncard,country,phonenumber } = formState;
+  const { cardnumber, expdate, cvc, nameoncard, country, phonenumber } = formState;
   const [contactModal, setContactModal] = useState(false)
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormState({ ...formState, [name]: value });
     setErrorMessage("");
-    
-    };
+
+  };
   const [errorMessage, setErrorMessage] = useState("")
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-   
+
+
     if (
-      country == "" || nameoncard == ""|| cvc == ""|| expdate == ""|| cardnumber == ""||phonenumber ==""
+      country == "" || nameoncard == "" || cvc == "" || expdate == "" || cardnumber == "" || phonenumber == ""
     ) {
       setErrorMessage("Please fill in all fields!");
 
       return;
     }
- 
-     else {
-      
+
+    else {
+
       setErrorMessage("");
     }
     handleOkButtonClick();
 
   };
- 
 
-  const nav=useNavigate()
+
+  const nav = useNavigate()
   const handleOkButtonClick = () => {
-    if (country !== "" && nameoncard !== "" &&cvc !== ""&& expdate !== ""&& cardnumber !== "") {
+    if (country !== "" && nameoncard !== "" && cvc !== "" && expdate !== "" && cardnumber !== "") {
       setFormState(initialForm);
       nav(`/booking-detailsCard/${id}`)
-    }  
-    
+    }
+
   };
   const handleOkButtonClicknum = () => {
-    if (phonenumber!=="") {
+    if (phonenumber !== "") {
       setFormState(initialForm);
       setOpen(!open);
-    }  
-    
+    }
+
   };
 
   const [isActive, setIsActive] = useState(false);
@@ -96,7 +96,7 @@ function BookingDetails() {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:2605/tickets/${id}`)
+    fetch(`https://jsons-lemon.vercel.app/tickets/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setData(data);
@@ -176,10 +176,10 @@ function BookingDetails() {
                 </div>
                 {
                   isActive ?
-                  <img onClick={handleClick} src={radioBlack} alt="" />: <img onClick={handleClick} src={radio} alt="" />
+                    <img onClick={handleClick} src={radioBlack} alt="" /> : <img onClick={handleClick} src={radio} alt="" />
 
                 }
-               
+
               </div>
               <div className={isActive ? "pay__part bg-salmon" : "pay__part"}>
                 <div>
@@ -191,9 +191,9 @@ function BookingDetails() {
                   </p>
                 </div>
                 {
-                  
+
                   !isActive ?
-                  <img onClick={handleClick} src={radioBlack} alt="" />: <img onClick={handleClick} src={radio} alt="" />
+                    <img onClick={handleClick} src={radioBlack} alt="" /> : <img onClick={handleClick} src={radio} alt="" />
 
                 }
               </div>
@@ -205,20 +205,20 @@ function BookingDetails() {
             >
               <h1>Login or Sign up to book</h1>
               <form onSubmit={handleSubmit}>
-              <input type="number"
-               name="phonenumber"
-               value={phonenumber}
-               onChange={handleChange} 
-               placeholder="Phone Number" />
- <p>
-                We’ll call or text you to confirm your number. Standard message
-                and data rates apply. Privacy Policy
-              </p>
-              <button className='login_btn'  onClick={handleOkButtonClicknum}>Continue</button>
-            {errorMessage && (
+                <input type="number"
+                  name="phonenumber"
+                  value={phonenumber}
+                  onChange={handleChange}
+                  placeholder="Phone Number" />
+                <p>
+                  We’ll call or text you to confirm your number. Standard message
+                  and data rates apply. Privacy Policy
+                </p>
+                <button className='login_btn' onClick={handleOkButtonClicknum}>Continue</button>
+                {errorMessage && (
                   <h6 className="error-message">{errorMessage}</h6>
                 )}
-              {/* <div
+                {/* <div
                 onClick={() => {
                   setOpen(!open);
                 }}
@@ -226,8 +226,8 @@ function BookingDetails() {
               >
                 <h2>Continue</h2>
               </div> */}
-               </form>
-             
+              </form>
+
               <div className="or">
                 <h3>Or</h3>
               </div>
@@ -275,74 +275,74 @@ function BookingDetails() {
               </div>
             </div>
             {
-                    showModal && 
-                    <div className={hide ? "modal hide_modal" : "modal"}>
-                    <form onSubmit={handleSubmit}>
-                    <h1>Add a card  <AiOutlineClose className="modal_close" onClick={()=>setHide(!hide)}/></h1>
-                    <AiOutlineClose className="modal_close" onClick={()=>{
-                      setOpen(!open)
-                      setErrorMessage("")
-                      setHide(!hide)
-                    }}/>
-                    <fieldset>
-                   
-                       <legend>Card Number</legend>
-                       <input type="number"
-                       name="cardnumber"
-                       value={cardnumber}
-                       onChange={handleChange} 
-                         placeholder="4321 4321 4321 4321"/>
-                         <img src={visa} alt="" />
-                       </fieldset>
-                       <div>
-                       <fieldset>
-                       <legend>Exp. Date</legend>
-                       <input
-                       name="expdate"
-                       value={expdate}
-                       onChange={handleChange} 
-                        type="text"    placeholder="02/27"/>
-                       
-                       </fieldset>
-                       <fieldset>
-                       <legend>CVC</legend>
-                       <input
-                       name="cvc"
-                       value={cvc}
-                       onChange={handleChange} 
-                        type="number"  placeholder="123"/>
-                       </fieldset>
-                       </div>
-           
-                       <fieldset>
-                       <legend>Name on Card</legend>
-                       <input
-                            name="nameoncard"
-                            value={nameoncard}
-                            onChange={handleChange}
+              showModal &&
+              <div className={hide ? "modal hide_modal" : "modal"}>
+                <form onSubmit={handleSubmit}>
+                  <h1>Add a card  <AiOutlineClose className="modal_close" onClick={() => setHide(!hide)} /></h1>
+                  <AiOutlineClose className="modal_close" onClick={() => {
+                    setOpen(!open)
+                    setErrorMessage("")
+                    setHide(!hide)
+                  }} />
+                  <fieldset>
 
-                        type="text"  placeholder="John Doe"/>
-                       </fieldset>
-           
-                       <fieldset>
-                       <legend>Country or Region</legend>
-                       <input
-                        name="country"
-                        value={country}
+                    <legend>Card Number</legend>
+                    <input type="number"
+                      name="cardnumber"
+                      value={cardnumber}
+                      onChange={handleChange}
+                      placeholder="4321 4321 4321 4321" />
+                    <img src={visa} alt="" />
+                  </fieldset>
+                  <div>
+                    <fieldset>
+                      <legend>Exp. Date</legend>
+                      <input
+                        name="expdate"
+                        value={expdate}
                         onChange={handleChange}
-                        type="text"  placeholder="United States"/>
-                       </fieldset>
-                       <h4><img src={checkbox} alt="" />Securely save my information for 1-click checkout</h4>
-                       <button className='login_btn'  onClick={handleOkButtonClick}>Add Card</button>
-            {errorMessage && (
-                  <h6 className="error-message">{errorMessage}</h6>
-                )}
-                      
-                       <p>By confirming your subscription, you allow The Outdoor Inn Crowd Limited to charge your card for this payment and future payments in accordance with their terms. You can always cancel your subscription.</p>
-                    </form>
-                    
-               </div>
-                }
+                        type="text" placeholder="02/27" />
+
+                    </fieldset>
+                    <fieldset>
+                      <legend>CVC</legend>
+                      <input
+                        name="cvc"
+                        value={cvc}
+                        onChange={handleChange}
+                        type="number" placeholder="123" />
+                    </fieldset>
+                  </div>
+
+                  <fieldset>
+                    <legend>Name on Card</legend>
+                    <input
+                      name="nameoncard"
+                      value={nameoncard}
+                      onChange={handleChange}
+
+                      type="text" placeholder="John Doe" />
+                  </fieldset>
+
+                  <fieldset>
+                    <legend>Country or Region</legend>
+                    <input
+                      name="country"
+                      value={country}
+                      onChange={handleChange}
+                      type="text" placeholder="United States" />
+                  </fieldset>
+                  <h4><img src={checkbox} alt="" />Securely save my information for 1-click checkout</h4>
+                  <button className='login_btn' onClick={handleOkButtonClick}>Add Card</button>
+                  {errorMessage && (
+                    <h6 className="error-message">{errorMessage}</h6>
+                  )}
+
+                  <p>By confirming your subscription, you allow The Outdoor Inn Crowd Limited to charge your card for this payment and future payments in accordance with their terms. You can always cancel your subscription.</p>
+                </form>
+
+              </div>
+            }
           </div>
 
           <div className="economy">

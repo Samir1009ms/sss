@@ -15,7 +15,7 @@ function HotelDetailsCard() {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:2605/hotels/${id}`)
+    fetch(`https://jsons-lemon.vercel.app/hotels/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setData(data);

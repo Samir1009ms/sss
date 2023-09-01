@@ -2,11 +2,11 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination, Autoplay,EffectCoverflow } from "swiper";
+import SwiperCore, { Navigation, Pagination, Autoplay, EffectCoverflow } from "swiper";
 
 import "swiper/swiper-bundle.css";
 
-SwiperCore.use([Navigation, Pagination, Autoplay,EffectCoverflow ]);
+SwiperCore.use([Navigation, Pagination, Autoplay, EffectCoverflow]);
 
 export default function Swipers() {
   const { id } = useParams();
@@ -14,7 +14,7 @@ export default function Swipers() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:2605/hotels/${id}`)
+    fetch(`https://jsons-lemon.vercel.app/hotels/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setData(data.staysImages);
@@ -48,7 +48,7 @@ export default function Swipers() {
           },
         }}
         modules={[Autoplay]}
-        style={{height:"600px",padding:"120px 0"}}
+        style={{ height: "600px", padding: "120px 0" }}
         onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
         navigation={{
           prevEl: ".swiper-button-prev",

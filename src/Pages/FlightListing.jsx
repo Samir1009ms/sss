@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 import "rc-slider/assets/index.css";
 
 
-import { RiShoppingBag3Line,RiShoppingBag3Fill} from "react-icons/ri";
-import { MdFavoriteBorder,MdFavorite } from "react-icons/md";
+import { RiShoppingBag3Line, RiShoppingBag3Fill } from "react-icons/ri";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 function FlightListing({ basketTicket, dispatch, basketTicketBuy }) {
   useEffect(() => {
     localStorage.setItem("basketTicket", JSON.stringify(basketTicket));
@@ -42,19 +42,19 @@ function FlightListing({ basketTicket, dispatch, basketTicketBuy }) {
     });
   };
 
-  const [new1,setNew1]=useState(localStorage.getItem("fromtoinput")|| "")
-  const [new2,setNew2]=useState(localStorage.getItem("departinput")|| "")
-  const [new3,setNew3]=useState(localStorage.getItem("returninput")|| "")
-  const [new4,setNew4]=useState(localStorage.getItem("passengerinput")|| "")
+  const [new1, setNew1] = useState(localStorage.getItem("fromtoinput") || "")
+  const [new2, setNew2] = useState(localStorage.getItem("departinput") || "")
+  const [new3, setNew3] = useState(localStorage.getItem("returninput") || "")
+  const [new4, setNew4] = useState(localStorage.getItem("passengerinput") || "")
 
-  
-  
+
+
   const [data, setData] = useState([]);
   const [filteredFlights, setFilteredFlights] = useState([]);
   const [filter, setFilter] = useState({
-    fromTo:  `${new1}`,
+    fromTo: `${new1}`,
     departDate: `${new2}`,
-    returnDate:  `${new2}`,
+    returnDate: `${new2}`,
     passengerClass: `${new4}`,
     checkedAirlines: [],
     selectedRating: "",
@@ -79,7 +79,7 @@ function FlightListing({ basketTicket, dispatch, basketTicketBuy }) {
   }
 
   useEffect(() => {
-    fetch("http://localhost:2605/tickets")
+    fetch("https://jsons-lemon.vercel.app/tickets")
       .then((response) => response.json())
       .then((data) => {
         setData(data);
@@ -223,386 +223,383 @@ function FlightListing({ basketTicket, dispatch, basketTicketBuy }) {
 
   return (
     <div className="container__full">
-    <section className="FlightListing">
-      <div className="container">
-        <section className="flight_listing_roadmap">
-          <div className="flight_listing_roadmap_box">
-            <div>
-              <span>From - To</span>
-
-              <input
-                type="text"
-                name="fromTo"
-                value={filter.fromTo}
-                onChange={handlefilter}
-                placeholder="Lahore - Karachi"
-              />
-              <img src={arrowop} alt="" />
-            </div>
-          </div>
-
-          <div className="flight_listing_roadmap_box">
-            <div>
-              <input
-                type="date"
-                name="departDate"
-                value={filter.departDate}
-                onChange={handlefilter}
-              />
-              <span>Depart </span>
-            </div>
-          </div>
-
-          <div className="flight_listing_roadmap_box">
-            <div>
-              <input
-                type="date"
-                id="returnDate"
-                name="returnDate"
-                value={filter.returnDate}
-                onChange={handlefilter}
-              />
-              <span>Return</span>
-            </div>
-          </div>
-
-          <div className="flight_listing_roadmap_box">
-            <div>
-              <select
-                id="passengerClass"
-                name="passengerClass"
-                value={filter.passengerClass}
-                onChange={handlefilter}
-              >
-                <option value="">Passenger Class</option>
-                <option value="Economy">Economy</option>
-                <option value="Business">Business</option>
-                <option value="First Class">First Class</option>
-              </select>
-              <span>Passenger - class</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="flight_listing_main_section">
-          <div>
-            <h3>Filters</h3>
-
-            <div className="filte_box">
+      <section className="FlightListing">
+        <div className="container">
+          <section className="flight_listing_roadmap">
+            <div className="flight_listing_roadmap_box">
               <div>
-                <h4>Price</h4>
-              </div>
-              <div>
-                <Slider
-                  range
-                  min={0}
-                  max={1000}
-                  value={filter.priceRange}
-                  onChange={handlePriceRangeChange}
-                  handleStyle={handleStyle}
-                  trackStyle={trackStyle}
+                <span>From - To</span>
+
+                <input
+                  type="text"
+                  name="fromTo"
+                  value={filter.fromTo}
+                  onChange={handlefilter}
+                  placeholder="Lahore - Karachi"
                 />
-                <div className="filter_values">
-                  <span>${filter.priceRange[0]}</span>
-                  <span>${filter.priceRange[1]}</span>
-                </div>
+                <img src={arrowop} alt="" />
               </div>
             </div>
-            <img src={Rectangle_16} alt="" />
-            <div className="filte_box">
+
+            <div className="flight_listing_roadmap_box">
               <div>
-                <h4>Departure Time</h4>
-              </div>
-              <div>
-                <Slider
-                  range
-                  min={0}
-                  max={24}
-                  step={0.01}
-                  value={filter.timeRange}
-                  onChange={handleTimeRangeChange}
-                  handleStyle={handleStyle}
-                  trackStyle={trackStyle}
+                <input
+                  type="date"
+                  name="departDate"
+                  value={filter.departDate}
+                  onChange={handlefilter}
                 />
-                <div className="filter_values">
-                  <span>{filter.timeRange[0]}</span>
-                  <span>{filter.timeRange[1]}</span>
-                </div>
+                <span>Depart </span>
               </div>
             </div>
-            <img src={Rectangle_16} alt="" />
 
-            <div className="filte_box">
+            <div className="flight_listing_roadmap_box">
               <div>
-                <h4>Rating</h4>
-              </div>
-              <div className="filter_rating_flex">
-                <div className="filter_rating">
-                  <button
-                    className={
-                      filter.selectedRating === "0+" ? "ratingActive" : ""
-                    }
-                    onClick={() =>
-                      setFilter({ ...filter, selectedRating: "0+" })
-                    }
-                  >
-                    <span>0+</span>
-                  </button>
-                </div>
-                <div className="filter_rating">
-                  <button
-                    className={
-                      filter.selectedRating === "1+" ? "ratingActive" : ""
-                    }
-                    onClick={() =>
-                      setFilter({ ...filter, selectedRating: "1+" })
-                    }
-                  >
-                    <span>1+</span>
-                  </button>
-                </div>
-                <div className="filter_rating">
-                  <button
-                    className={
-                      filter.selectedRating === "2+" ? "ratingActive" : ""
-                    }
-                    onClick={() =>
-                      setFilter({ ...filter, selectedRating: "2+" })
-                    }
-                  >
-                    <span>2+</span>
-                  </button>
-                </div>
-                <div className="filter_rating ">
-                  <button
-                    className={
-                      filter.selectedRating === "3+" ? "ratingActive" : ""
-                    }
-                    onClick={() =>
-                      setFilter({ ...filter, selectedRating: "3+" })
-                    }
-                  >
-                    <span>3+</span>
-                  </button>
-                </div>
-                <div className="filter_rating">
-                  <button
-                    className={
-                      filter.selectedRating === "4+" ? "ratingActive" : ""
-                    }
-                    onClick={() =>
-                      setFilter({ ...filter, selectedRating: "4+" })
-                    }
-                  >
-                    <span>4+</span>
-                  </button>
-                </div>
+                <input
+                  type="date"
+                  id="returnDate"
+                  name="returnDate"
+                  value={filter.returnDate}
+                  onChange={handlefilter}
+                />
+                <span>Return</span>
               </div>
             </div>
-            <img src={Rectangle_16} alt="" />
 
-            <div className="filte_box">
+            <div className="flight_listing_roadmap_box">
               <div>
-                <h4>Airlines</h4>
+                <select
+                  id="passengerClass"
+                  name="passengerClass"
+                  value={filter.passengerClass}
+                  onChange={handlefilter}
+                >
+                  <option value="">Passenger Class</option>
+                  <option value="Economy">Economy</option>
+                  <option value="Business">Business</option>
+                  <option value="First Class">First Class</option>
+                </select>
+                <span>Passenger - class</span>
               </div>
-              <div>
-                <div className="filter_airlines_flex">
-                  {uniqueAirlines.map((airline) => (
-                    <label key={airline}>
-                      <input
-                        type="checkbox"
-                        name="checkedAirlines"
-                        value={airline}
-                        checked={filter.checkedAirlines.includes(airline)}
-                        onChange={handlefilter}
-                      />
-                      <span>{airline}</span>
-                    </label>
-                  ))}
+            </div>
+          </section>
+
+          <section className="flight_listing_main_section">
+            <div>
+              <h3>Filters</h3>
+
+              <div className="filte_box">
+                <div>
+                  <h4>Price</h4>
+                </div>
+                <div>
+                  <Slider
+                    range
+                    min={0}
+                    max={1000}
+                    value={filter.priceRange}
+                    onChange={handlePriceRangeChange}
+                    handleStyle={handleStyle}
+                    trackStyle={trackStyle}
+                  />
+                  <div className="filter_values">
+                    <span>${filter.priceRange[0]}</span>
+                    <span>${filter.priceRange[1]}</span>
+                  </div>
                 </div>
               </div>
-              
-              
-              <button className="clear_filter"
-                onClick={() => setFilter({
-                  fromTo:  ``,
-                  departDate: ``,
-                  returnDate:  ``,
-                  passengerClass: ``,
-                  checkedAirlines: [],
-                  selectedRating: "",
-                  timeRange: [0, 24],
-                  priceRange: [0, 1000],
-                  filterType: "Cheapest",
-                })}
-              >
-                Clear Filter
-              </button>
-            </div>
-          </div>
-
-          <div className="line_up"></div>
-
-          <div className="flight_listing_places">
-            <div className="wrapper">
-              <div
-                className={`flight_listing_places_box ${
-                  activeIndex === 0 ? "active" : ""
-                }`}
-                onClick={() => handleClick(0)}
-              >
-                <button
-                  onClick={() =>
-                    setFilter({ ...filter, filterType: "Cheapest" })
-                  }
-                >
-                  <p>Cheapest</p>
-                </button>
-                {activeIndex === 0 && <div className="boxline" />}
+              <img src={Rectangle_16} alt="" />
+              <div className="filte_box">
+                <div>
+                  <h4>Departure Time</h4>
+                </div>
+                <div>
+                  <Slider
+                    range
+                    min={0}
+                    max={24}
+                    step={0.01}
+                    value={filter.timeRange}
+                    onChange={handleTimeRangeChange}
+                    handleStyle={handleStyle}
+                    trackStyle={trackStyle}
+                  />
+                  <div className="filter_values">
+                    <span>{filter.timeRange[0]}</span>
+                    <span>{filter.timeRange[1]}</span>
+                  </div>
+                </div>
               </div>
-              <img src={Line_1} alt="" />
+              <img src={Rectangle_16} alt="" />
 
-              <div
-                className={`flight_listing_places_box ${
-                  activeIndex === 1 ? "active" : ""
-                }`}
-                onClick={() => handleClick(1)}
-              >
-                <button
-                  onClick={() => setFilter({ ...filter, filterType: "Best" })}
-                >
-                  <p>Best</p>
-                </button>
-                {activeIndex === 1 && <div className="boxline" />}
+              <div className="filte_box">
+                <div>
+                  <h4>Rating</h4>
+                </div>
+                <div className="filter_rating_flex">
+                  <div className="filter_rating">
+                    <button
+                      className={
+                        filter.selectedRating === "0+" ? "ratingActive" : ""
+                      }
+                      onClick={() =>
+                        setFilter({ ...filter, selectedRating: "0+" })
+                      }
+                    >
+                      <span>0+</span>
+                    </button>
+                  </div>
+                  <div className="filter_rating">
+                    <button
+                      className={
+                        filter.selectedRating === "1+" ? "ratingActive" : ""
+                      }
+                      onClick={() =>
+                        setFilter({ ...filter, selectedRating: "1+" })
+                      }
+                    >
+                      <span>1+</span>
+                    </button>
+                  </div>
+                  <div className="filter_rating">
+                    <button
+                      className={
+                        filter.selectedRating === "2+" ? "ratingActive" : ""
+                      }
+                      onClick={() =>
+                        setFilter({ ...filter, selectedRating: "2+" })
+                      }
+                    >
+                      <span>2+</span>
+                    </button>
+                  </div>
+                  <div className="filter_rating ">
+                    <button
+                      className={
+                        filter.selectedRating === "3+" ? "ratingActive" : ""
+                      }
+                      onClick={() =>
+                        setFilter({ ...filter, selectedRating: "3+" })
+                      }
+                    >
+                      <span>3+</span>
+                    </button>
+                  </div>
+                  <div className="filter_rating">
+                    <button
+                      className={
+                        filter.selectedRating === "4+" ? "ratingActive" : ""
+                      }
+                      onClick={() =>
+                        setFilter({ ...filter, selectedRating: "4+" })
+                      }
+                    >
+                      <span>4+</span>
+                    </button>
+                  </div>
+                </div>
               </div>
-              <img src={Line_1} alt="" />
+              <img src={Rectangle_16} alt="" />
 
-              <div
-                className={`flight_listing_places_box ${
-                  activeIndex === 2 ? "active" : ""
-                }`}
-                onClick={() => handleClick(2)}
-              >
-                <button
-                  onClick={() =>
-                    setFilter({ ...filter, filterType: "Quickest" })
-                  }
+              <div className="filte_box">
+                <div>
+                  <h4>Airlines</h4>
+                </div>
+                <div>
+                  <div className="filter_airlines_flex">
+                    {uniqueAirlines.map((airline) => (
+                      <label key={airline}>
+                        <input
+                          type="checkbox"
+                          name="checkedAirlines"
+                          value={airline}
+                          checked={filter.checkedAirlines.includes(airline)}
+                          onChange={handlefilter}
+                        />
+                        <span>{airline}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+
+                <button className="clear_filter"
+                  onClick={() => setFilter({
+                    fromTo: ``,
+                    departDate: ``,
+                    returnDate: ``,
+                    passengerClass: ``,
+                    checkedAirlines: [],
+                    selectedRating: "",
+                    timeRange: [0, 24],
+                    priceRange: [0, 1000],
+                    filterType: "Cheapest",
+                  })}
                 >
-                  <p>Quickest</p>
+                  Clear Filter
                 </button>
-                {activeIndex === 2 && <div className="boxline" />}
               </div>
             </div>
-            <div className="flight_listing_page_count">
-              <p>
-                Showing {ticketElements.length} of{" "}
-                <span>{filteredFlights.length} places</span>
-              </p>
-            </div>
 
-            {ticketElements.map((ticket) => {
-              const inBasket = basketTicket.find((t) => t.id === ticket.id);
-              const inBasketBuy = basketTicketBuy.find(
-                (t) => t.id === ticket.id
-              );
-              return (
-                <div className="flight_listing_places_name" key={ticket.id}>
-                  <div
-                    style={{ backgroundImage: `url(${ticket.image})` }}
-                  ></div>
+            <div className="line_up"></div>
 
-                  <div className="flight_listing_places_name_feat">
-                    <div>
-                      <div>
-                        <button className="flight_frame">
-                          <p>{ticket.rating}</p>
-                        </button>
-                        <p>
-                          <span>{ticket.reviewQuality}</span>{" "}
-                          {ticket.reviewCount} reviews
-                        </p>
-                      </div>
-                      <div>
-                        <p>starting from</p>
-                        <h4>${ticket.price}</h4>
-                      </div>
-                    </div>
+            <div className="flight_listing_places">
+              <div className="wrapper">
+                <div
+                  className={`flight_listing_places_box ${activeIndex === 0 ? "active" : ""
+                    }`}
+                  onClick={() => handleClick(0)}
+                >
+                  <button
+                    onClick={() =>
+                      setFilter({ ...filter, filterType: "Cheapest" })
+                    }
+                  >
+                    <p>Cheapest</p>
+                  </button>
+                  {activeIndex === 0 && <div className="boxline" />}
+                </div>
+                <img src={Line_1} alt="" />
 
-                    <div>
+                <div
+                  className={`flight_listing_places_box ${activeIndex === 1 ? "active" : ""
+                    }`}
+                  onClick={() => handleClick(1)}
+                >
+                  <button
+                    onClick={() => setFilter({ ...filter, filterType: "Best" })}
+                  >
+                    <p>Best</p>
+                  </button>
+                  {activeIndex === 1 && <div className="boxline" />}
+                </div>
+                <img src={Line_1} alt="" />
+
+                <div
+                  className={`flight_listing_places_box ${activeIndex === 2 ? "active" : ""
+                    }`}
+                  onClick={() => handleClick(2)}
+                >
+                  <button
+                    onClick={() =>
+                      setFilter({ ...filter, filterType: "Quickest" })
+                    }
+                  >
+                    <p>Quickest</p>
+                  </button>
+                  {activeIndex === 2 && <div className="boxline" />}
+                </div>
+              </div>
+              <div className="flight_listing_page_count">
+                <p>
+                  Showing {ticketElements.length} of{" "}
+                  <span>{filteredFlights.length} places</span>
+                </p>
+              </div>
+
+              {ticketElements.map((ticket) => {
+                const inBasket = basketTicket.find((t) => t.id === ticket.id);
+                const inBasketBuy = basketTicketBuy.find(
+                  (t) => t.id === ticket.id
+                );
+                return (
+                  <div className="flight_listing_places_name" key={ticket.id}>
+                    <div
+                      style={{ backgroundImage: `url(${ticket.image})` }}
+                    ></div>
+
+                    <div className="flight_listing_places_name_feat">
                       <div>
                         <div>
-                          <div>
-                            <h3>
-                              {ticket.departTime} - {ticket.arrivalTime}
-                            </h3>
-                            <span>{ticket.airline}</span>
-                          </div>
-
-                          <p>non stop</p>
-
-                          <div>
-                            <h3>{ticket.durationstring}</h3>
-                            <span>{ticket.passengerClass}</span>
-                          </div>
+                          <button className="flight_frame">
+                            <p>{ticket.rating}</p>
+                          </button>
+                          <p>
+                            <span>{ticket.reviewQuality}</span>{" "}
+                            {ticket.reviewCount} reviews
+                          </p>
+                        </div>
+                        <div>
+                          <p>starting from</p>
+                          <h4>${ticket.price}</h4>
                         </div>
                       </div>
 
                       <div>
-                        <h3>
-                          {ticket.departDate} - {ticket.returnDate}
-                        </h3>
-                        <p>
-                          {ticket.from}-{ticket.to}
-                        </p>
-                      </div>
-                    </div>
+                        <div>
+                          <div>
+                            <div>
+                              <h3>
+                                {ticket.departTime} - {ticket.arrivalTime}
+                              </h3>
+                              <span>{ticket.airline}</span>
+                            </div>
 
-                    <div className="rectangle4">.</div>
+                            <p>non stop</p>
 
-                    <div className="view_places_flex">
-                      <div className="filter_rating e">
-                        {inBasket ? (
-                          <button onClick={() => removeFromBasket(ticket.id)}>
-                           <MdFavorite className="favorutie_heart"/>
-                          </button>
-                        ) : (
-                          <button onClick={() => addToBasket(ticket.id)}>
-                            <MdFavoriteBorder className="favorutie_heart"/>
-                          </button>
-                        )}
+                            <div>
+                              <h3>{ticket.durationstring}</h3>
+                              <span>{ticket.passengerClass}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div>
+                          <h3>
+                            {ticket.departDate} - {ticket.returnDate}
+                          </h3>
+                          <p>
+                            {ticket.from}-{ticket.to}
+                          </p>
+                        </div>
                       </div>
-                      <Link to={`/flight-details/${ticket.id}`}>
-                        View Place
-                      </Link>
-                      <div className="add_to_basket">
-                        {inBasketBuy ? (
-                          <button onClick={() => removeFromCard(ticket.id)}>
-                            <RiShoppingBag3Fill/>
-                          </button>
-                        ) : (
-                          <button onClick={() => addToCard(ticket.id)}>
-                            <RiShoppingBag3Line />
-                          </button>
-                        )}
+
+                      <div className="rectangle4">.</div>
+
+                      <div className="view_places_flex">
+                        <div className="filter_rating e">
+                          {inBasket ? (
+                            <button onClick={() => removeFromBasket(ticket.id)}>
+                              <MdFavorite className="favorutie_heart" />
+                            </button>
+                          ) : (
+                            <button onClick={() => addToBasket(ticket.id)}>
+                              <MdFavoriteBorder className="favorutie_heart" />
+                            </button>
+                          )}
+                        </div>
+                        <Link to={`/flight-details/${ticket.id}`}>
+                          View Place
+                        </Link>
+                        <div className="add_to_basket">
+                          {inBasketBuy ? (
+                            <button onClick={() => removeFromCard(ticket.id)}>
+                              <RiShoppingBag3Fill />
+                            </button>
+                          ) : (
+                            <button onClick={() => addToCard(ticket.id)}>
+                              <RiShoppingBag3Line />
+                            </button>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-            {numShown < filteredFlights.length ? (
-              <button className="show_result" onClick={handleShowMore}>
-                Show More
-              </button>
-            ) : (
-              <button className="show_result" onClick={handleShowLess}>
-                Show Less
-              </button>
-            )}
-          </div>
-        </section>
-      </div>
-    </section>
+                );
+              })}
+              {numShown < filteredFlights.length ? (
+                <button className="show_result" onClick={handleShowMore}>
+                  Show More
+                </button>
+              ) : (
+                <button className="show_result" onClick={handleShowLess}>
+                  Show Less
+                </button>
+              )}
+            </div>
+          </section>
+        </div>
+      </section>
     </div>
   );
 }
